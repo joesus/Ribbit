@@ -7,6 +7,7 @@
 //
 
 #import "InboxTableViewController.h"
+#import <Parse/Parse.h>
 
 @interface InboxTableViewController ()
 
@@ -16,6 +17,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    testObject[@"foo"] = @"bar";
+    testObject[@"bar"] = @"foo";
+    [testObject saveInBackground];
     
     [self performSegueWithIdentifier:@"showLogin" sender:self];
 }
