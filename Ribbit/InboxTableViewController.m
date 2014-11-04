@@ -18,9 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    PFUser *currentUser = [PFUser currentUser];
     
-    
-    [self performSegueWithIdentifier:@"showLogin" sender:self];
+    if (!currentUser) {
+        [self performSegueWithIdentifier:@"showLogin" sender:self];
+    }
 }
 
 #pragma mark - Table view data source
@@ -37,4 +39,16 @@
     return 0;
 }
 
+- (IBAction)logout:(id)sender {
+    [PFUser logOut];
+    [self performSegueWithIdentifier:@"showLogin" sender:self];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // checks if the segue is the login segue
+    if ([segue.identifier isEqualToString:@"showLogin"]) {
+        // hides the bottom panel items
+        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
+    }
+}
 @end

@@ -27,7 +27,13 @@
                             <outlet property="delegate" destination="hss-2g-Nmc" id="oD2-NJ-dkE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="05J-MT-Yfw"/>
+                    <navigationItem key="navigationItem" id="05J-MT-Yfw">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="ElQ-wx-ZvZ">
+                            <connections>
+                                <action selector="logout:" destination="hss-2g-Nmc" id="O1b-EB-FB4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="BYJ-oL-B3M" kind="show" identifier="showLogin" id="EiH-QL-56t"/>
                     </connections>
@@ -87,6 +93,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="164" y="143" width="73" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="login:" destination="BYJ-oL-B3M" eventType="touchUpInside" id="TfZ-xn-nDO"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pf-O3-o6r">
                                 <rect key="frame" x="156" y="192" width="288" height="34"/>
@@ -136,6 +145,10 @@
                             <constraint firstItem="tbi-bg-hf1" firstAttribute="trailing" secondItem="bIU-2v-xL1" secondAttribute="trailingMargin" id="tgp-9D-VmB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordField" destination="yYt-nX-f6z" id="Pa1-jL-Jf6"/>
+                        <outlet property="usernameField" destination="tbi-bg-hf1" id="6W9-VS-bGl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSe-7T-j8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
