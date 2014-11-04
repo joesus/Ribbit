@@ -36,10 +36,10 @@
             </objects>
             <point key="canvasLocation" x="1574" y="-390"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="jcw-Eh-GSv">
             <objects>
-                <viewController id="BYJ-oL-B3M" sceneMemberID="viewController">
+                <viewController id="BYJ-oL-B3M" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DtN-Gq-cCw"/>
                         <viewControllerLayoutGuide type="bottom" id="HZR-kC-JW0"/>
@@ -272,10 +272,10 @@
             </objects>
             <point key="canvasLocation" x="770" y="978"/>
         </scene>
-        <!--View Controller-->
+        <!--Signup View Controller-->
         <scene sceneID="hGX-mC-1QC">
             <objects>
-                <viewController id="a27-JT-YOr" sceneMemberID="viewController">
+                <viewController id="a27-JT-YOr" customClass="SignupViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CVi-Vf-Qqk"/>
                         <viewControllerLayoutGuide type="bottom" id="xhS-AU-Bov"/>
@@ -331,6 +331,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="235" y="172" width="82" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="signup:" destination="a27-JT-YOr" eventType="touchUpInside" id="ocy-Dg-28c"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZjH-QF-mOX">
                                 <rect key="frame" x="16" y="148" width="568" height="30"/>
@@ -367,6 +370,11 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="NfH-kB-X4t" id="eRS-eg-InX"/>
+                        <outlet property="passwordField" destination="ZjH-QF-mOX" id="TBv-Bt-f9x"/>
+                        <outlet property="usernameField" destination="u5t-1c-0ex" id="Zb6-kB-wy0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yn3-ak-Si8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

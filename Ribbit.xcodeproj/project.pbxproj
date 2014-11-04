@@ -20,6 +20,8 @@
 		2792D92E1A0830C70049250E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2792D9281A0830C70049250E /* Security.framework */; };
 		2792D92F1A0830C70049250E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2792D9291A0830C70049250E /* StoreKit.framework */; };
 		2792D9301A0830C70049250E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2792D92A1A0830C70049250E /* SystemConfiguration.framework */; };
+		2792D9331A084D410049250E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2792D9321A084D410049250E /* LoginViewController.m */; };
+		2792D9361A084D640049250E /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2792D9351A084D640049250E /* SignupViewController.m */; };
 		27C926601A07EC0C00DD02C1 /* InboxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9265F1A07EC0C00DD02C1 /* InboxTableViewController.m */; };
 		F438532D1A0580C500234A5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F438532C1A0580C500234A5B /* main.m */; };
 		F43853301A0580C500234A5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F438532F1A0580C500234A5B /* AppDelegate.m */; };
@@ -53,6 +55,10 @@
 		2792D9281A0830C70049250E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2792D9291A0830C70049250E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2792D92A1A0830C70049250E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2792D9311A084D410049250E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		2792D9321A084D410049250E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		2792D9341A084D640049250E /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		2792D9351A084D640049250E /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		27C9265E1A07EC0C00DD02C1 /* InboxTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxTableViewController.h; sourceTree = "<group>"; };
 		27C9265F1A07EC0C00DD02C1 /* InboxTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxTableViewController.m; sourceTree = "<group>"; };
 		F43853271A0580C500234A5B /* Ribbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ribbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,11 +150,15 @@
 				F438532E1A0580C500234A5B /* AppDelegate.h */,
 				F438532F1A0580C500234A5B /* AppDelegate.m */,
 				F43853371A0580C500234A5B /* Main.storyboard */,
+				2792D9341A084D640049250E /* SignupViewController.h */,
+				2792D9351A084D640049250E /* SignupViewController.m */,
+				27C9265E1A07EC0C00DD02C1 /* InboxTableViewController.h */,
+				27C9265F1A07EC0C00DD02C1 /* InboxTableViewController.m */,
+				2792D9311A084D410049250E /* LoginViewController.h */,
+				2792D9321A084D410049250E /* LoginViewController.m */,
 				F438533A1A0580C500234A5B /* Images.xcassets */,
 				F438533C1A0580C500234A5B /* LaunchScreen.xib */,
 				F438532A1A0580C500234A5B /* Supporting Files */,
-				27C9265E1A07EC0C00DD02C1 /* InboxTableViewController.h */,
-				27C9265F1A07EC0C00DD02C1 /* InboxTableViewController.m */,
 			);
 			path = Ribbit;
 			sourceTree = "<group>";
@@ -279,9 +289,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2792D9331A084D410049250E /* LoginViewController.m in Sources */,
 				27C926601A07EC0C00DD02C1 /* InboxTableViewController.m in Sources */,
 				F43853301A0580C500234A5B /* AppDelegate.m in Sources */,
 				F438532D1A0580C500234A5B /* main.m in Sources */,
+				2792D9361A084D640049250E /* SignupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
