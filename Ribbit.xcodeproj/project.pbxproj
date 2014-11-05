@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		273147F81A0AA6BD00555849 /* EditFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147F71A0AA6BD00555849 /* EditFriendsTableViewController.m */; };
+		273147FB1A0AB2AD00555849 /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147FA1A0AB2AD00555849 /* FriendsTableViewController.m */; };
 		2792D9191A07FF940049250E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2792D9161A07FF940049250E /* Bolts.framework */; };
 		2792D91A1A07FF940049250E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2792D9171A07FF940049250E /* Parse.framework */; };
 		2792D91B1A07FF940049250E /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2792D9181A07FF940049250E /* ParseFacebookUtils.framework */; };
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		273147F61A0AA6BD00555849 /* EditFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditFriendsTableViewController.h; path = ../EditFriendsTableViewController.h; sourceTree = "<group>"; };
 		273147F71A0AA6BD00555849 /* EditFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditFriendsTableViewController.m; path = ../EditFriendsTableViewController.m; sourceTree = "<group>"; };
+		273147F91A0AB2AD00555849 /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
+		273147FA1A0AB2AD00555849 /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
 		2792D9161A07FF940049250E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.4.2/Bolts.framework"; sourceTree = "<group>"; };
 		2792D9171A07FF940049250E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.4.2/Parse.framework"; sourceTree = "<group>"; };
 		2792D9181A07FF940049250E /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "parse-library-1.4.2/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				F438532F1A0580C500234A5B /* AppDelegate.m */,
 				273147F61A0AA6BD00555849 /* EditFriendsTableViewController.h */,
 				273147F71A0AA6BD00555849 /* EditFriendsTableViewController.m */,
+				273147F91A0AB2AD00555849 /* FriendsTableViewController.h */,
+				273147FA1A0AB2AD00555849 /* FriendsTableViewController.m */,
 				27C9265E1A07EC0C00DD02C1 /* InboxTableViewController.h */,
 				27C9265F1A07EC0C00DD02C1 /* InboxTableViewController.m */,
 				2792D9311A084D410049250E /* LoginViewController.h */,
@@ -299,6 +304,7 @@
 				273147F81A0AA6BD00555849 /* EditFriendsTableViewController.m in Sources */,
 				F43853301A0580C500234A5B /* AppDelegate.m in Sources */,
 				F438532D1A0580C500234A5B /* main.m in Sources */,
+				273147FB1A0AB2AD00555849 /* FriendsTableViewController.m in Sources */,
 				2792D9361A084D640049250E /* SignupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
