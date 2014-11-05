@@ -7,7 +7,6 @@
 //
 
 #import "EditFriendsTableViewController.h"
-#import <Parse/Parse.h>
 
 @interface EditFriendsTableViewController ()
 
@@ -17,6 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //sets the current user to a property on the controller
+    self.currentUser = [PFUser currentUser];
+    
     // queries all users by default
     PFQuery *query = [PFUser query];
     [query orderByAscending:@"username"];
@@ -44,7 +47,8 @@
     return self.allUsers.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -55,4 +59,36 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    // instantiates a new cell based on the cell at the selected row
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    // Creates a relation object based on currentUser, essentially adds a join column.
+    PFRelation *friendsRelation = [self.currentUser relationForKey:@"friendsRelation"];
+    // Redefines the clicked user
+    PFUser *user = [self.allUsers objectAtIndex:indexPath.row];
+    // Adds the user to the new column locally
+    [friendsRelation addObject:user];
+    // Saves it to the backend
+    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"%@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
