@@ -204,7 +204,7 @@
                     <navigationItem key="navigationItem" title="Friends" id="qJ5-D0-ocg">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="fWF-R1-IMS">
                             <connections>
-                                <segue destination="AFa-dc-p3L" kind="show" id="Ca0-Mu-Wtt"/>
+                                <segue destination="AFa-dc-p3L" kind="show" identifier="showEditFriends" id="Ca0-Mu-Wtt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -213,10 +213,10 @@
             </objects>
             <point key="canvasLocation" x="1574" y="278"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Recipients-->
         <scene sceneID="hi9-OG-YSS">
             <objects>
-                <tableViewController id="gEC-CX-uBD" sceneMemberID="viewController">
+                <tableViewController id="gEC-CX-uBD" customClass="CameraTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WG3-3d-sFy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,7 +234,7 @@
                             <outlet property="delegate" destination="gEC-CX-uBD" id="c5L-dY-F8i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="O1T-fh-3P8"/>
+                    <navigationItem key="navigationItem" title="Recipients" id="O1T-fh-3P8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Be3-ed-QIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

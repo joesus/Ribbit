@@ -56,6 +56,12 @@
     
     cell.textLabel.text = user.username;
     
+    if ([self isFriend:user]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     return cell;
 }
 
@@ -65,20 +71,50 @@
     
     // instantiates a new cell based on the cell at the selected row
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    
-    // Creates a relation object based on currentUser, essentially adds a join column.
-    PFRelation *friendsRelation = [self.currentUser relationForKey:@"friendsRelation"];
+
     // Redefines the clicked user
     PFUser *user = [self.allUsers objectAtIndex:indexPath.row];
-    // Adds the user to the new column locally
-    [friendsRelation addObject:user];
+    // Creates a relation object based on currentUser, essentially adds a join column.
+    PFRelation *friendsRelation = [self.currentUser relationForKey:@"friendsRelation"];
+
+    // Checks if selected user is a friend
+    if ([self isFriend:user]) {
+        // Removes the checkmark
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        // Removes the user locally
+        for (PFUser *friend in self.friends) {
+            if ([friend.objectId isEqualToString:user.objectId]) {
+                [self.friends removeObject:friend];
+                break;
+            }
+        }
+        // Removes them from the
+        [friendsRelation removeObject:user];
+    } else {
+        // Adds a checkmark
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [self.friends addObject:user];
+        // Adds the user to the new column locally
+        [friendsRelation addObject:user];
+    }
     // Saves it to the backend
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"%@ %@", error, [error userInfo]);
         }
     }];
+}
+
+#pragma mark - Helper methods
+
+- (BOOL) isFriend:(PFUser *)user {
+    for (PFUser *friend in self.friends) {
+        if ([friend.objectId isEqualToString:user.objectId]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end
