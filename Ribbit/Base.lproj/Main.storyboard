@@ -222,7 +222,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3mB-Mp-htf">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="3mB-Mp-htf">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3mB-Mp-htf" id="3xW-8A-b1w">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -234,7 +234,18 @@
                             <outlet property="delegate" destination="gEC-CX-uBD" id="c5L-dY-F8i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recipients" id="O1T-fh-3P8"/>
+                    <navigationItem key="navigationItem" title="Recipients" id="O1T-fh-3P8">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="r2R-Yy-uyF">
+                            <connections>
+                                <action selector="cancel:" destination="gEC-CX-uBD" id="qMj-2l-HE8"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="IH1-t7-Zur">
+                            <connections>
+                                <action selector="send:" destination="gEC-CX-uBD" id="V2A-Z1-5c6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Be3-ed-QIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

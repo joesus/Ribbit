@@ -15,13 +15,18 @@
 
 @implementation FriendsTableViewController
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidLoad {
     [super viewDidLoad];
+    
     // sets user to current user
     PFUser *user = [PFUser currentUser];
     // grabs the friends relation properties of the current user it's a PFRelation
     self.friendsRelation = [user objectForKey:@"friendsRelation"];
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     // Sets up a query object which is basically just our search term
     PFQuery *query = [self.friendsRelation query];
     // adds to our query

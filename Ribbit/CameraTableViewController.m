@@ -8,6 +8,7 @@
 
 #import "CameraTableViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <Parse/Parse.h>
 
 @interface CameraTableViewController ()
 
@@ -17,11 +18,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.recipients = [[NSMutableArray alloc] init];
+    
+    // sets user to current user
+    PFUser *user = [PFUser currentUser];
+    // grabs the friends relation properties of the current user it's a PFRelation
+    self.friendsRelation = [user objectForKey:@"friendsRelation"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self presentPickerVC];
+    
+    // Sets up a query object which is basically just our search term
+    PFQuery *query = [self.friendsRelation query];
+    // adds to our query
+    [query orderByAscending:@"username"];
+    
+    // Uses query to search the backend
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"%@ %@", error, [error userInfo]);
+        } else {
+            // sets it to the array of returned objects
+            self.friends = objects;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 #pragma mark - Table view data source
@@ -29,15 +53,47 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return self.friends.count;
 }
 
+ - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+ // Configure the cell...
+     static NSString *CellIdentifier = @"Cell";
+     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+     
+     PFUser *user = self.friends[indexPath.row];
+     cell.textLabel.text = user.username;
+     
+     if ([self.recipients containsObject:user.objectId]) {
+         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+     } else {
+         cell.accessoryType = UITableViewCellAccessoryNone;
+     }
+     return cell;
+ }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    PFUser *user = self.friends[indexPath.row];
+    
+    if (cell.accessoryType == UITableViewCellAccessoryNone) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        // saves only the objectId because that's all the parse needs to find the user object
+        [self.recipients addObject:user.objectId];
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        [self.recipients removeObject:user.objectId];
+    }
+}
 
 #pragma mark - Image Picker Controller delegate
 
@@ -47,11 +103,12 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    NSString *mediaType = info[UIImagePickerControllerMediaType];
     
     // a photo was taken or selected
-    // casts the kUTTypeImage to NSString and checks if the media type was a photo
-    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+    // First checks if mediaType is null, then casts the kUTTypeImage to NSString and checks if the media type was a photo
+    if (mediaType && [mediaType isEqualToString:(NSString *)kUTTypeImage]) {
         // TODO - how to find the keys for info?
         self.image = [info objectForKey:UIImagePickerControllerOriginalImage];
         
@@ -95,14 +152,17 @@
     }
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
+#pragma mark - IBActions
 
+- (IBAction)cancel:(id)sender {
+    self.videoFilePath = nil;
+    self.image = nil;
+    [self.recipients removeAllObjects];
+    
+    [self.tabBarController setSelectedIndex:0];
+}
+
+- (IBAction)send:(id)sender {
+    
+}
 @end
