@@ -10,6 +10,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <Parse/Parse.h>
 
+
 @interface CameraTableViewController ()
 
 @end
@@ -131,6 +132,26 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - IBActions
+
+- (IBAction)cancel:(id)sender {
+    [self reset];
+    [self.tabBarController setSelectedIndex:0];
+}
+
+- (IBAction)send:(id)sender {
+    // make sure that a photo or movie is set and send it if it is
+    if (self.image == nil && [self.videoFilePath length] == 0) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Try again!" message:@"Please capture a photo or video" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        [self presentPickerVC];
+    } else {
+        // proceeds with the upload and takes the user to the inbox view
+        [self uploadMessage];
+        [self.tabBarController setSelectedIndex:0];
+    }
+}
+
 #pragma mark - Helper methods
 
 - (void) presentPickerVC {
@@ -139,7 +160,7 @@
         // creates new imagepicker controller and sets delegate to self since we imported the delegates in the header file
         self.imagePicker = [[UIImagePickerController alloc] init];
         self.imagePicker.delegate = self;
-    
+        
         self.imagePicker.allowsEditing = NO;
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -152,17 +173,81 @@
     }
 }
 
-#pragma mark - IBActions
+- (void) uploadMessage {
+    NSData *fileData;
+    NSString *fileName;
+    NSString *fileType;
+    
+    // check if image or video
+    if (self.image != nil) {
+         // if image shrink
+        UIImage *newImage = [self resize:self.image toWidth:320.0 andHeight:480.0];
+        fileData = UIImagePNGRepresentation(newImage);
+        fileName = @"image.png";
+        fileType = @"image";
+    } else {
+        fileData = [NSData dataWithContentsOfFile:self.videoFilePath];
+        fileName = @"video.mov";
+        fileType = @"video";
+    }
+    
+    // Creates a file object parse can handle
+    PFFile *file = [PFFile fileWithName:fileName data:fileData];
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"An error occurred!" message:@"Please try sending your message again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        } else {
+            PFObject *message = [PFObject objectWithClassName:@"Messages"];
+            [message setObject:file forKey:@"file"];
+            [message setObject:fileType forKey:@"fileType"];
+            [message setObject:self.recipients forKey:@"recipientIds"];
+            [message setObject:[[PFUser currentUser] objectId] forKey:@"senderId"];
+            [message setObject:[[PFUser currentUser] username] forKey:@"senderName"];
+            [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (error) {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"An error occurred!" message:@"Please try sending your message again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
+                } else {
+                    // Everything was successful so clear the local data
+                    [self reset];
+                }
+            }];
+        }
+    }];
+}
 
-- (IBAction)cancel:(id)sender {
+- (void)reset {
     self.videoFilePath = nil;
     self.image = nil;
     [self.recipients removeAllObjects];
-    
-    [self.tabBarController setSelectedIndex:0];
 }
 
-- (IBAction)send:(id)sender {
+- (UIImage *)resize:(UIImage *)image toWidth:(float)width andHeight:(float)height {
+    // creates a new size
+    CGSize newSize = CGSizeMake(width, height);
+    // creates a new rectangle from our new size
+    CGRect newRectangle = CGRectMake(0, 0, width, height);
     
+    // begins an image context
+    UIGraphicsBeginImageContext(newSize);
+    // adds our image to that container
+    [self.image drawInRect:newRectangle];
+    // gets the image back out of the box
+    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    // ends the image context
+    UIGraphicsEndImageContext();
+    
+    return resizedImage;
 }
+
 @end
+
+
+
+
+
+
+
+
+

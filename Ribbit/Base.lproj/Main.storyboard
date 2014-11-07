@@ -6,16 +6,16 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Inbox Table View Controller-->
+        <!--Ribbit-->
         <scene sceneID="gay-T1-LnV">
             <objects>
-                <tableViewController id="hss-2g-Nmc" customClass="InboxTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Ribbit" id="hss-2g-Nmc" customClass="InboxTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="HE1-u0-cu4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="tSa-N6-IAF">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="tSa-N6-IAF">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tSa-N6-IAF" id="Wbp-dP-ZUL">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -36,11 +36,49 @@
                     </navigationItem>
                     <connections>
                         <segue destination="BYJ-oL-B3M" kind="show" identifier="showLogin" id="EiH-QL-56t"/>
+                        <segue destination="r2C-ZC-9zb" kind="show" identifier="showImage" id="Jlq-rh-VZO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g7k-pI-AZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1574" y="-390"/>
+            <point key="canvasLocation" x="1582" y="-390"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="nKw-FJ-krX">
+            <objects>
+                <viewController id="r2C-ZC-9zb" customClass="ImageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JeQ-iO-bYV"/>
+                        <viewControllerLayoutGuide type="bottom" id="ed9-M9-kK5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Ka-kE-cbj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g22-88-eFJ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="Hij-3j-NKb"/>
+                                    <constraint firstAttribute="width" secondItem="g22-88-eFJ" secondAttribute="height" multiplier="1:1" id="u7A-dR-Msr"/>
+                                    <constraint firstAttribute="height" constant="600" id="ypX-lF-Azg"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="g22-88-eFJ" firstAttribute="bottom" secondItem="8Ka-kE-cbj" secondAttribute="bottomMargin" id="5Sg-17-Uiu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g22-88-eFJ" secondAttribute="trailing" constant="-16" id="UmV-jM-fmw"/>
+                            <constraint firstItem="g22-88-eFJ" firstAttribute="top" secondItem="8Ka-kE-cbj" secondAttribute="topMargin" id="ktp-zo-L4Z"/>
+                            <constraint firstItem="g22-88-eFJ" firstAttribute="leading" secondItem="8Ka-kE-cbj" secondAttribute="leadingMargin" constant="-16" id="vHR-z1-m4G"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="g22-88-eFJ" id="Wko-Z8-2SP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ogi-1J-ghl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2257" y="-1096"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="jcw-Eh-GSv">
