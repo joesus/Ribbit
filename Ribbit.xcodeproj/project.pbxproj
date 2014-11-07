@@ -10,6 +10,7 @@
 		273147F81A0AA6BD00555849 /* EditFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147F71A0AA6BD00555849 /* EditFriendsTableViewController.m */; };
 		273147FB1A0AB2AD00555849 /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 273147FA1A0AB2AD00555849 /* FriendsTableViewController.m */; };
 		274719171A0D81800031CDBE /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274719161A0D81800031CDBE /* ImageViewController.m */; };
+		274719191A0D90730031CDBE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274719181A0D90730031CDBE /* MediaPlayer.framework */; };
 		2765B3141A0AE891003F190F /* CameraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2765B3131A0AE891003F190F /* CameraTableViewController.m */; };
 		2792D9191A07FF940049250E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2792D9161A07FF940049250E /* Bolts.framework */; };
 		2792D91A1A07FF940049250E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2792D9171A07FF940049250E /* Parse.framework */; };
@@ -52,6 +53,7 @@
 		273147FA1A0AB2AD00555849 /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
 		274719151A0D81800031CDBE /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		274719161A0D81800031CDBE /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		274719181A0D90730031CDBE /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		2765B3121A0AE891003F190F /* CameraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTableViewController.h; sourceTree = "<group>"; };
 		2765B3131A0AE891003F190F /* CameraTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraTableViewController.m; sourceTree = "<group>"; };
 		2792D9161A07FF940049250E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.4.2/Bolts.framework"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				274719191A0D90730031CDBE /* MediaPlayer.framework in Frameworks */,
 				2792D92B1A0830C70049250E /* libz.1.1.3.dylib in Frameworks */,
 				2792D92C1A0830C70049250E /* MobileCoreServices.framework in Frameworks */,
 				2792D92D1A0830C70049250E /* QuartzCore.framework in Frameworks */,
@@ -120,6 +123,7 @@
 		2792D91C1A07FFAB0049250E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				274719181A0D90730031CDBE /* MediaPlayer.framework */,
 				2792D9251A0830C70049250E /* libz.1.1.3.dylib */,
 				2792D9261A0830C70049250E /* MobileCoreServices.framework */,
 				2792D9271A0830C70049250E /* QuartzCore.framework */,
