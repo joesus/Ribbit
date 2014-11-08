@@ -98,7 +98,28 @@
         
     }
     
+    // Delete the recipient from the list of recipients so the message will not show, if recipient is only recipient, also delete the message
+
+    NSMutableArray *recipientIds = [NSMutableArray arrayWithArray:self.selectedMessage[@"recipientIds"]];
+    NSLog(@"Recipients %@", recipientIds);
+    NSString *userId = [[PFUser currentUser] objectId];
     
+    if ([recipientIds containsObject:userId]) {
+        [recipientIds removeObject:[[PFUser currentUser] objectId]];
+        // save the updated object
+        [self.selectedMessage saveInBackground];
+    }
+    
+    if (recipientIds.count == 1) {
+        [recipientIds removeObject:[[PFUser currentUser] objectId]];
+
+        // pass the new group of users back to the object
+        [self.selectedMessage setObject:recipientIds forKey:@"recipientIds"];
+        // save the updated object
+        [self.selectedMessage saveInBackground];
+        // delete the message
+        [self.selectedMessage deleteInBackground];
+    }    
 }
 
 - (IBAction)logout:(id)sender {
